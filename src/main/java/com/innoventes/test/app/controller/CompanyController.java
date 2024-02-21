@@ -47,6 +47,7 @@ public class CompanyController {
 		return ResponseEntity.status(HttpStatus.OK).location(location).body(companyDTOList);
 	}
 
+	//Task 3 - API for fetching company on the basis of company ID.
 	@GetMapping(value = "/company/{id}")
 	public ResponseEntity<CompanyDTO> getCompanyById(@PathVariable(value = "id") Long id) {
 		Company company = companyService.getCompanyById(id);
@@ -56,6 +57,7 @@ public class CompanyController {
 		return ResponseEntity.status(HttpStatus.OK).location(location).body(companyDTO);
 	}
 
+	// Task 4 - API for fetching company on the basis of company code.
 	@GetMapping(value = "company/{companyCode}")
 	public ResponseEntity<CompanyDTO> getCompanyByCode(@PathVariable(value = "companyCode") String companyCode) {
 		Company company = companyService.getCompanyByCode(companyCode);

@@ -14,7 +14,6 @@ import com.innoventes.test.app.exception.ValidationException;
 import com.innoventes.test.app.repository.CompanyRepository;
 import com.innoventes.test.app.service.CompanyService;
 import com.innoventes.test.app.util.ServiceHelper;
-
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
@@ -67,11 +66,9 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public Company getCompanyByCode(String companyCode) {
-		List<Company> companyList = companyRepository.findAll();
-		for(Company company : companyList) {
-			if (company.getCompanyCode().equals(companyCode)) {
-				return company;
-			}
+		Optional<Company> company = companyRepository.findByCompanyCode(companyCode);
+		if (company.isPresent()) {
+			return company.get();
 		}
 		throw new ResourceNotFoundException(String.format(serviceHelper.getLocalizedMessage(
 				ApplicationErrorCodes.COMPANY_NOT_FOUND), companyCode),ApplicationErrorCodes.COMPANY_NOT_FOUND);

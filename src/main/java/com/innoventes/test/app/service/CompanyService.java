@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.innoventes.test.app.entity.Company;
 import com.innoventes.test.app.exception.ValidationException;
+import org.springframework.stereotype.Service;
 
 public interface CompanyService {
 
